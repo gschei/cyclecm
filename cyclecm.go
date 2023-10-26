@@ -24,8 +24,9 @@ func main() {
 	router.POST("/clubs", addClub)
 	router.GET("/clubs/:id", getClubById)
 	router.DELETE("/clubs/:id", deleteClubById)
+	router.GET("/health", health)
 
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 }
 
 func getClubs(c *gin.Context) {
@@ -66,4 +67,9 @@ func deleteClubById(c *gin.Context) {
 	} else {
 		c.IndentedJSON(http.StatusBadRequest, err)
 	}
+}
+
+func health(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, struct{ Status string }{Status: "OK"})
+
 }
