@@ -6,16 +6,13 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+
+	"github.com/gschei/cyclecm/domain/club"
 )
 
-type club struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
-var clubs = []club{
-	{ID: "1", Name: "Fleissige Radfahrer"},
-	{ID: "2", Name: "Puppyton"},
+var clubs = []club.Club{
+	{ID: 1, Name: "Fleissige Radfahrer"},
+	{ID: 2, Name: "Puppyton"},
 }
 
 func main() {
@@ -34,7 +31,7 @@ func getClubs(c *gin.Context) {
 }
 
 func addClub(c *gin.Context) {
-	var newClub club
+	var newClub club.Club
 
 	if err := c.BindJSON(&newClub); err != nil {
 		return
