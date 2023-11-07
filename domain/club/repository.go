@@ -14,4 +14,5 @@ type ClubRepository interface {
 	Get(int64) (Club, error)
 	Add(Club) (Club, error)
 	Update(Club) error
+	GetAll() []Club
 }

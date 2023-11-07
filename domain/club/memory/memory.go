@@ -31,17 +31,25 @@ func (mr *MemoryRepository) Add(c club.Club) (club.Club, error) {
 	mr.Lock()
 	idCounter++
 	c.ID = idCounter
-	mr.clubs[c.GetID()] = c
+	mr.clubs[c.ID] = c
 	mr.Unlock()
 	return c, nil
 }
 
 func (mr *MemoryRepository) Update(c club.Club) error {
-	if _, ok := mr.clubs[c.GetID()]; !ok {
+	if _, ok := mr.clubs[c.ID]; !ok {
 		return club.ErrClubNotFound
 	}
 	mr.Lock()
-	mr.clubs[c.GetID()] = c
+	mr.clubs[c.ID] = c
 	mr.Unlock()
 	return nil
+}
+
+func (mr *MemoryRepository) GetAll() []club.Club {
+	var clubs []club.Club
+	for key := range mr.clubs {
+		clubs = append(clubs, mr.clubs[key])
+	}
+	return clubs
 }

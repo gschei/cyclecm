@@ -17,7 +17,7 @@ func TestMemory_GetClub(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	id := c.GetID()
+	id := c.ID
 
 	repo := MemoryRepository{
 		clubs: map[int64]club.Club{
@@ -134,6 +134,27 @@ func TestMemory_UpdateClub(t *testing.T) {
 				t.Errorf("Expected Name %v, got %v", tc.club.Name, c.Name)
 			}
 		}
+	}
+
+}
+
+func TestMemory_Singleton(t *testing.T) {
+	repo1 := New()
+
+	c1, err := club.NewClub("G1")
+	if err != nil {
+		c1, _ = repo1.Add(c1)
+	}
+
+	repo2 := New()
+
+	c2, err2 := club.NewClub("G1")
+	if err2 != nil {
+		c2, _ = repo2.Add(c2)
+	}
+
+	if c1.ID != c2.ID || c1.ID != 1 {
+		t.Errorf("Ids are wrong, should be equal to 1: %v %v ", c1.ID, c2.ID)
 	}
 
 }

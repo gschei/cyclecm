@@ -20,21 +20,6 @@ func NewClub(name string) (Club, error) {
 
 	return Club{
 		Name: name,
-		ID:   1,
+		ID:   0,
 	}, nil
-}
-
-func (c *Club) GetID() int64 {
-	return c.ID
-}
-func (c *Club) SetID(id int64) {
-	c.ID = id
-}
-
-func (c *Club) SetName(name string) {
-	c.Name = name
-}
-
-func (c *Club) GetName() string {
-	return c.Name
 }
