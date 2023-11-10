@@ -17,6 +17,22 @@ jobs:
         version: 'v1.28.3'
       id: install
 
+    - name: Replace kubeconfig placeholders
+      run: |
+        sed -i "s/\$EXO_CERT_AUTHORITY/${{ secrets.EXO_CERT_AUTHORITY }}/g" kubernetes/kubeconfig.yaml
+        sed -i "s/\$K8S_SERVER/${{ vars.K8S_SERVER }}/g" kubernetes/kubeconfig.yaml
+        sed -i "s/\$EXO_CLIENT_CERT/${{ secrets.EXO_CLIENT_CERT }}/g" kubernetes/kubeconfig.yaml
+        sed -i "s/\$EXO_CLIENT_KEY/${{ secrets.EXO_CLIENT_KEY }}/g" kubernetes/kubeconfig.yaml
+        sed -i "s/\$IMAGE_VERSION/${{ 0.0.1 }}/g" kubernetes/deployment.yaml
+
+    - name: Configure Kubectl
+      run: |
+        echo "Configuring kubectl..."
+        mkdir -p $HOME/.kube
+        cp kubernetes/kubeconfig.yaml $HOME/.kube/config
+        kubectl config view
+      shell: bash
+
     - name: Deploy to Exoscale
       run: |
         kubectl apply -f kubernetes/deployment.yaml
