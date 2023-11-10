@@ -30,6 +30,7 @@ jobs:
     - name: Configure Kubectl
       run: |
         echo "Configuring kubectl..."
+        cat kubernetes/kubeconfig.yaml
         mkdir -p $HOME/.kube
         cp kubernetes/kubeconfig.yaml $HOME/.kube/config
         kubectl config view
