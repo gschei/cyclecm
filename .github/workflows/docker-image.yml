@@ -37,5 +37,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: ${{ vars.DOCKERHUB_USER }}/cyclecm:latest
