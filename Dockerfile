@@ -10,10 +10,8 @@ USER goapp
 
 COPY --chown=goapp:gogroup go.mod go.sum ./
 RUN go mod download
-COPY --chown=goapp:gogroup *.go ./
-RUN /bin/bash -c 'ls -altr /'
+COPY --chown=goapp:gogroup ./ ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/bin/cyclecm
-RUN /bin/bash -c 'ls -altr /app/bin'
 
 FROM scratch
 
