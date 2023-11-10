@@ -21,6 +21,7 @@ jobs:
 
     - name: Replace kubeconfig placeholders
       run: |
+        echo "Secret value: ${{ secrets.EXO_CERT_AUTHORITY }}"
         sed -i "s#\$EXO_CERT_AUTHORITY#${{ secrets.EXO_CERT_AUTHORITY }}#g" kubernetes/kubeconfig.yaml
         sed -i "s#\$K8S_SERVER#${{ vars.K8S_SERVER }}#g" kubernetes/kubeconfig.yaml
         sed -i "s#\$EXO_CLIENT_CERT#${{ secrets.EXO_CLIENT_CERT }}#g" kubernetes/kubeconfig.yaml
