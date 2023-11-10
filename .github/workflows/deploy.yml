@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install Kubectl
-      - uses: azure/setup-kubectl@v3
-        with:
-          version: 'v1.28.3'
-        id: install
+    - name: Install Kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.28.3'
+      id: install
 
-      - name: Deploy to Exoscale
-        run: |
-          kubectl apply -f kubernetes/deployment.yaml
-          kubectl apply -f kubernetes/service.yaml
+    - name: Deploy to Exoscale
+      run: |
+        kubectl apply -f kubernetes/deployment.yaml
+        kubectl apply -f kubernetes/service.yaml
