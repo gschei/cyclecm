@@ -16,6 +16,8 @@ jobs:
       with:
         version: 'v1.28.3'
       id: install
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
     - name: Replace kubeconfig placeholders
       run: |
