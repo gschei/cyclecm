@@ -19,5 +19,5 @@ COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /etc/group /etc/group
 WORKDIR /app
 COPY --chown=goapp:gogroup --from=build /app/bin/cyclecm /app/bin/cyclecm
-USER goappon: [ workflow_dispatch ]
+USER goapp
 CMD ["/app/bin/cyclecm"]
