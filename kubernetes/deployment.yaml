@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: cyclecm
-          image: docker pull gs42/cyclecm:latest
+          image: gs42/cyclecm:latest
           ports:
             - containerPort: 8080
           resources:
