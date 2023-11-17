@@ -81,5 +81,4 @@ func deleteClubById(c *gin.Context) {
 
 func health(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, struct{ Status string }{Status: "OK"})
-
 }
