@@ -7,14 +7,14 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/gschei/cyclecm/domain/club"
-	clubRepo "github.com/gschei/cyclecm/domain/club/memory"
+	clubRepo "github.com/gschei/cyclecm/domain/club/rdb"
 )
 
 var clubRepository club.ClubRepository = clubRepo.New()
 
 func main() {
-	club, _ := club.NewClub("Gilbert")
-	clubRepository.Add(club)
+	//club, _ := club.NewClub("Gilbert")
+	//clubRepository.Add(club)
 
 	router := gin.Default()
 	router.GET("/clubs", getClubs)

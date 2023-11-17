@@ -13,12 +13,12 @@ type Club struct {
 	Name string `json:"name"`
 }
 
-func NewClub(name string) (Club, error) {
+func NewClub(name string) (*Club, error) {
 	if name == "" {
-		return Club{}, ErrInvalidClub
+		return &Club{}, ErrInvalidClub
 	}
 
-	return Club{
+	return &Club{
 		Name: name,
 		ID:   0,
 	}, nil

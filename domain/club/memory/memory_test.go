@@ -21,7 +21,7 @@ func TestMemory_GetClub(t *testing.T) {
 
 	repo := MemoryRepository{
 		clubs: map[int64]club.Club{
-			id: c,
+			id: *c,
 		},
 	}
 
@@ -81,7 +81,7 @@ func TestMemory_AddClub(t *testing.T) {
 		var res club.Club
 		if err == nil {
 			t.Logf("created club %v,%v", c.ID, c.Name)
-			res, err = repo.Add(c)
+			res, err = repo.Add(*c)
 			t.Logf("added club %v,%v", res.ID, res.Name)
 		}
 		if err != tc.expectedErr {
@@ -106,7 +106,7 @@ func TestMemory_UpdateClub(t *testing.T) {
 
 	repo := MemoryRepository{
 		clubs: map[int64]club.Club{
-			c.ID: c,
+			c.ID: *c,
 		},
 	}
 
@@ -143,14 +143,14 @@ func TestMemory_Singleton(t *testing.T) {
 
 	c1, err := club.NewClub("G1")
 	if err != nil {
-		c1, _ = repo1.Add(c1)
+		*c1, _ = repo1.Add(*c1)
 	}
 
 	repo2 := New()
 
 	c2, err2 := club.NewClub("G1")
 	if err2 != nil {
-		c2, _ = repo2.Add(c2)
+		*c2, _ = repo2.Add(*c2)
 	}
 
 	if c1.ID != c2.ID || c1.ID != 1 {
