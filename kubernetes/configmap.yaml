@@ -2,8 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cyclecm
+  namespace: gs-test
 data:
   pg-host: "cyclecm-gs1-exoscale-3f2a5e0c-1335-4f35-953e-98061b66ace8.a.aivencloud.com"
   pg-port: "21699"
   pg-dbname: "defaultdb"
-  
+
