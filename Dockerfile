@@ -13,7 +13,7 @@ RUN go mod download
 COPY --chown=goapp:gogroup ./ ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/bin/cyclecm
 
-FROM scratch
+FROM gcr.io/distroless/base-debian12
 
 COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /etc/group /etc/group
