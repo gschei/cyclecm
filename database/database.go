@@ -22,7 +22,7 @@ func GetDbConnection() *sql.DB {
 		return db
 	}
 	readConfig()
-	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=require", host, port, user, password, dbname)
 
 	var err error
 	db, err = sql.Open("postgres", psqlconn)
